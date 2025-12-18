@@ -5,67 +5,243 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>アンケート分析ラボ</title>
 
+    <!-- PWA -->
     <link rel="manifest" href="manifest.json" />
     <meta name="theme-color" content="#ff6d00" />
 
+    <!-- Android (old) -->
     <meta name="mobile-web-app-capable" content="yes" />
 
+    <!-- iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="アンケラボ" />
     <link rel="apple-touch-icon" href="kuticomi.png" />
 
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="kutilabo.png" />
 
     <style>
-      html, body {
+      :root{
+        --bg: #fff3e0;
+        --card: #ffffff;
+        --text: #222;
+        --muted: #555;
+        --muted2: #666;
+        --brand: #ff6d00;
+        --shadow: 0 12px 36px rgba(0,0,0,0.14);
+      }
+
+      *{ box-sizing: border-box; }
+
+      html, body{
         margin: 0;
         height: 100%;
         font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-        background: #fff3e0;
+        background: radial-gradient(circle at top, #ffe0b2, var(--bg));
+        color: var(--text);
       }
-      .wrap {
-        height: 100%;
+
+      /* 端末のノッチ/ホームバー対策 */
+      body{
+        padding:
+          env(safe-area-inset-top)
+          env(safe-area-inset-right)
+          env(safe-area-inset-bottom)
+          env(safe-area-inset-left);
+      }
+
+      .wrap{
+        min-height: 100%;
         display: grid;
         place-items: center;
-        padding: 16px;
+        padding: clamp(14px, 3vw, 28px);
         text-align: center;
       }
-      .card {
-        width: min(420px, 92vw);
-        background: #fff;
-        border-radius: 16px;
-        padding: 18px 16px;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+
+      .card{
+        width: min(720px, 92vw);
+        background: var(--card);
+        border-radius: 18px;
+        padding: clamp(16px, 2.6vw, 28px);
+        box-shadow: var(--shadow);
+        border: 1px solid rgba(0,0,0,0.06);
       }
-      .btn {
-        display: inline-block;
-        background: #ff6d00;
+
+      /* PCでは左右2カラム、スマホでは縦積み */
+      .layout{
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: clamp(12px, 2vw, 20px);
+        align-items: center;
+      }
+
+      @media (max-width: 700px){
+        .layout{ grid-template-columns: 1fr; }
+      }
+
+      .left{
+        text-align: left;
+      }
+      @media (max-width: 700px){
+        .left{ text-align: center; }
+      }
+
+      .title{
+        margin: 0 0 8px;
+        font-size: clamp(1.15rem, 2.4vw, 1.55rem);
+        letter-spacing: 0.02em;
+      }
+
+      .desc{
+        margin: 0 0 14px;
+        color: var(--muted);
+        font-size: clamp(0.92rem, 1.6vw, 1.02rem);
+        line-height: 1.7;
+      }
+
+      .meta{
+        margin-top: 10px;
+        padding: 10px 12px;
+        border-radius: 12px;
+        background: rgba(255,109,0,0.08);
+        color: #7a3b00;
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      .right{
+        display: grid;
+        gap: 10px;
+        justify-items: center;
+      }
+
+      .btn{
+        width: min(320px, 100%);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        border: 0;
+        background: var(--brand);
         color: #fff;
-        padding: 10px 14px;
+        padding: 12px 14px;
         border-radius: 999px;
-        font-weight: 700;
+        font-weight: 800;
+        cursor: pointer;
         text-decoration: none;
+        font-size: 1rem;
+        box-shadow: 0 10px 22px rgba(255,109,0,0.28);
+        transition: transform .08s ease, box-shadow .12s ease, filter .12s ease;
+        -webkit-tap-highlight-color: transparent;
       }
-      .small { margin-top: 10px; font-size: 0.82rem; color: #666; word-break: break-all; }
+      .btn:hover{ filter: brightness(0.98); }
+      .btn:active{ transform: translateY(1px); box-shadow: 0 6px 14px rgba(255,109,0,0.22); }
+
+      .btn:focus-visible{
+        outline: 3px solid rgba(255,109,0,0.35);
+        outline-offset: 3px;
+      }
+
+      .hint{
+        color: var(--muted2);
+        font-size: 0.88rem;
+        margin: 0;
+      }
+
+      .small{
+        width: 100%;
+        font-size: 0.82rem;
+        color: var(--muted2);
+        word-break: break-all;
+        background: #fafafa;
+        border: 1px solid rgba(0,0,0,0.06);
+        border-radius: 12px;
+        padding: 10px 12px;
+        text-align: left;
+      }
+
+      .copyRow{
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .copyBtn{
+        border: 1px solid rgba(0,0,0,0.12);
+        background: #fff;
+        padding: 10px 12px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-weight: 700;
+        color: #333;
+      }
+      .copyBtn:active{ transform: translateY(1px); }
+
+      .spinner{
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        border: 3px solid rgba(255,109,0,0.25);
+        border-top-color: var(--brand);
+        animation: spin .8s linear infinite;
+      }
+      @keyframes spin{ to{ transform: rotate(360deg); } }
+
+      /* アクセシビリティ：動きを減らす */
+      @media (prefers-reduced-motion: reduce){
+        .spinner{ animation: none; }
+        .btn{ transition: none; }
+      }
     </style>
   </head>
 
   <body>
     <div class="wrap">
-      <div class="card">
-        <h1 style="margin:0 0 8px;font-size:1.1rem;">アンケート分析ラボを起動します</h1>
-        <p style="margin:0 0 14px;color:#555;font-size:0.92rem;line-height:1.6;">
-          自動で開かない場合は、下のボタンを押してください。
-        </p>
+      <div class="card" role="main" aria-live="polite">
+        <div class="layout">
+          <div class="left">
+            <h1 class="title">アンケート分析ラボを起動中…</h1>
+            <p class="desc">
+              数秒で自動的にアプリへ移動します。<br />
+              うまく開かない場合は、右のボタンから起動してください。
+            </p>
+            <div class="meta">
+              ※ Google の仕様により、外部サイトからの <b>iframe 埋め込み</b> は拒否される場合があります。<br />
+              このページは「起動専用の入口」です。
+            </div>
+          </div>
 
-        <a class="btn" id="openBtn" href="#">アプリを開く</a>
-        <div class="small" id="urlText"></div>
+          <div class="right">
+            <div class="spinner" aria-hidden="true"></div>
+            <a class="btn" id="openBtn" href="#">
+              <span aria-hidden="true">🚀</span>
+              <span>アプリを開く</span>
+            </a>
+            <p class="hint">開けない時はURLをコピーしてブラウザで開けます</p>
+
+            <div class="copyRow">
+              <div class="small" id="urlText"></div>
+              <button class="copyBtn" id="copyBtn" type="button">コピー</button>
+            </div>
+
+            <p class="hint" id="copyStatus" style="margin:0;"></p>
+          </div>
+        </div>
       </div>
     </div>
 
     <script>
-      const GAS_URL = "https://script.google.com/macros/s/AKfycbynI_9xtTelAnhyFWhytVKPr0i9pNJYG-nJ1WE3UzTzLrXoii0VkQ8Kku1-k75XkoE/exec";
+      const GAS_URL =
+        "https://script.google.com/macros/s/AKfycbynI_9xtTelAnhyFWhytVKPr0i9pNJYG-nJ1WE3UzTzLrXoii0VkQ8Kku1-k75XkoE/exec";
+
+      const urlTextEl = document.getElementById("urlText");
+      const copyBtn = document.getElementById("copyBtn");
+      const copyStatus = document.getElementById("copyStatus");
+
+      urlTextEl.textContent = GAS_URL;
 
       function openApp() {
         window.location.replace(GAS_URL);
@@ -76,9 +252,19 @@
         openApp();
       });
 
-      document.getElementById("urlText").textContent = GAS_URL;
+      copyBtn.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(GAS_URL);
+          copyStatus.textContent = "✅ URLをコピーしました";
+          setTimeout(() => (copyStatus.textContent = ""), 1500);
+        } catch (e) {
+          copyStatus.textContent = "⚠️ コピーできませんでした（長押しでコピーしてください）";
+          setTimeout(() => (copyStatus.textContent = ""), 2000);
+        }
+      });
 
-      setTimeout(openApp, 300);
+      // 自動起動（少し待ってから遷移）
+      setTimeout(openApp, 500);
     </script>
   </body>
 </html>
