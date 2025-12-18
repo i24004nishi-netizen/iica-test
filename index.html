@@ -2,111 +2,17 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>アンケート分析ラボ</title>
-
-    <!-- PWA -->
-    <link rel="manifest" href="manifest.json" />
-    <meta name="theme-color" content="#ff6d00" />
-
-    <!-- Android (old) -->
-    <meta name="mobile-web-app-capable" content="yes" />
-
-    <!-- iOS -->
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <meta name="apple-mobile-web-app-title" content="アンケラボ" />
-    <link rel="apple-touch-icon" href="kuticomi.png" />
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="kutilabo.png" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>更新テスト</title>
     <style>
-      html, body {
-        margin: 0;
-        height: 100%;
-        overflow: hidden;
-        font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-        background: #fff3e0;
-      }
-      .wrap {
-        height: 100%;
-        display: grid;
-        place-items: center;
-        padding: 16px;
-        text-align: center;
-      }
-      .card {
-        width: min(420px, 92vw);
-        background: #fff;
-        border-radius: 16px;
-        padding: 18px 16px;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-      }
-      .title { margin: 0 0 8px; font-size: 1.1rem; }
-      .desc { margin: 0 0 14px; color: #555; font-size: 0.92rem; line-height: 1.6; }
-      .btn {
-        display: inline-block;
-        border: 0;
-        background: #ff6d00;
-        color: #fff;
-        padding: 10px 14px;
-        border-radius: 999px;
-        font-weight: 700;
-        cursor: pointer;
-        text-decoration: none;
-      }
-      .small {
-        margin-top: 10px;
-        font-size: 0.82rem;
-        color: #666;
-        word-break: break-all;
-      }
-      .spinner {
-        width: 20px; height: 20px;
-        border-radius: 50%;
-        border: 3px solid rgba(255,109,0,0.25);
-        border-top-color: #ff6d00;
-        margin: 0 auto 10px;
-        animation: spin .8s linear infinite;
-      }
-      @keyframes spin { to { transform: rotate(360deg); } }
+      body { font-family: system-ui; padding: 20px; }
+      .ok { font-size: 18px; font-weight: 700; }
+      code { background: #f4f4f4; padding: 2px 6px; border-radius: 6px; }
     </style>
   </head>
-
   <body>
-    <div class="wrap">
-      <div class="card">
-        <div class="spinner"></div>
-        <h1 class="title">アンケート分析ラボを起動中…</h1>
-        <p class="desc">
-          画面が自動で開かない場合は、下のボタンを押してください。<br>
-          ※ Googleの仕様により、外部サイトからのiframe埋め込みは拒否されることがあります。
-        </p>
-
-        <a class="btn" id="openBtn" href="#">アプリを開く</a>
-
-        <div class="small" id="urlText"></div>
-      </div>
-    </div>
-
-    <script>
-      const GAS_URL = "https://script.google.com/macros/s/AKfycbynI_9xtTelAnhyFWhytVKPr0i9pNJYG-nJ1WE3UzTzLrXoii0VkQ8Kku1-k75XkoE/exec";
-
-      const openApp = () => {
-        // 同じタブで開く（PWA起動時もこのウィンドウ内で遷移しやすい）
-        window.location.replace(GAS_URL);
-      };
-
-      document.getElementById("openBtn").addEventListener("click", (e) => {
-        e.preventDefault();
-        openApp();
-      });
-
-      document.getElementById("urlText").textContent = GAS_URL;
-
-      // 自動起動（少し待ってから遷移）
-      setTimeout(openApp, 400);
-    </script>
+    <div class="ok">✅ GitHub Pages の index.html は更新されています</div>
+    <p>この表示が出ているなら、反映は成功です。</p>
+    <p>URL末尾に <code>?v=2</code> を付けてもOK。</p>
   </body>
 </html>
