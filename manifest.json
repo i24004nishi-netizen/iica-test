@@ -1,13 +1,11 @@
 {
     "name": "アンケート分析ラボ",
     "short_name": "アンケラボ",
-    "description": "GASのアンケート分析ツールをGitHub PagesのPWAとしてスマホアプリ化します。",
-    "lang": "ja",
-    "start_url": "https://github.com/i24004nishi-netizen/iica-test.git",
-    "scope": ".",
+    "start_url": "https://i24004nishi-netizen.github.io/iica-test/",
+    "scope": "https://i24004nishi-netizen.github.io/iica-test/",
     "display": "standalone",
-    "theme_color": "#FF6D00",
-    "background_color": "#FFF3E0",
+    "background_color": "#ffffff",
+    "theme_color": "#ff6d00",
     "icons": [
       {
         "src": "image192.png",
@@ -21,3 +19,4 @@
       }
     ]
   }
+  
