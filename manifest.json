@@ -1,25 +1,21 @@
 {
-    "name": "アンケート分析ラボ",
-    "short_name": "アンケラボ",
-    "start_url": "https://i24004nishi-netizen.github.io/iica-test/",
-    "scope": "https://i24004nishi-netizen.github.io/iica-test/",
-    "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#ff6d00",
-    "icons": [
-      {
-        "src":kuticomi.png",
-        "sizes": "192x192",
-        "type": "image/png"
-      },
-      {
-        "src": "kutilabo.png",
-        "sizes": "512x512",
-        "type": "image/png"
-      }
-    ]
-  }
-  
-
-
-
+  "name": "アンケート分析ラボ",
+  "short_name": "アンケラボ",
+  "start_url": "https://i24004nishi-netizen.github.io/iica-test/",
+  "scope": "https://i24004nishi-netizen.github.io/iica-test/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ff6d00",
+  "icons": [
+    {
+      "src": "kuticomi.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "kutilabo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
