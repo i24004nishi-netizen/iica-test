@@ -8,15 +8,16 @@
     "theme_color": "#ff6d00",
     "icons": [
       {
-        "src": "image192.png",
+        "src":kuticomi.png",
         "sizes": "192x192",
         "type": "image/png"
       },
       {
-        "src": "image512.png",
+        "src": "kutilabo.png",
         "sizes": "512x512",
         "type": "image/png"
       }
     ]
   }
   
+
